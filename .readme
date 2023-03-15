@@ -1,0 +1,49 @@
+Puis un encadré « Spécifications / How to book » et en-dessous un bloc texte « Cancellation policy ».
+
+En plus de cela, il faudrait le pavé de réservation (idéalement en sticky) avec les champs suivants :
+
+Nombre de personnes : menu déroulant avec :
+1 personne seule
+1 personne souhaitant rejoindre un groupe (mention qu’un groupe de 4 personnes est un prérequis pour l’organisation de l’évènement)
+2 personnes
+Groupe (retraite, team building, corporate event, workshop, regroupement d’amis). Il serait nécessaire de mentionner quelque part une liste exemplative de « groupe ».
+Si groupe, alors apparition d’un champ libre où la personne peut renseigner le nombre de personnes. Il faut également une mention qui dise : « Une offre définitive vous sera communiquée après vérification des disponibilités pour votre groupe »
+Dates : Calendrier avec date d’arrivée et date de départ
+Dates pour la personne seule : Elle indique ses dates et a la possibilité de cocher une case « dates flexibles » (ce qui ajoute 1-2 semaines avant et après les dates saisies)
+Champ pour un code promo. Pour le moment il n’y aura qu’un code promo (TCS2023) qui offrira 10% de rabais
+ 
+Une fois ces champs remplis, un prix sera calculé en fonction des tarifs suivants :
+
+1 personne = 950.- ou 850.- avec code promo
+2 personnes = 1’750.- ou 1’575.- avec code promo
+Groupe = 875.- par personne avec ou sans code promo
+ 
+
+À noter que les dates n’ont pas d’influence sur les tarifs.
+
+À inclure (je ne sais pas sous quelle forme) : une option pour offrir un bon cadeau avec les champs suivants : 
+
+-          Valeur du bon (menu déroulant avec € 50, € 100,  € 200, … jusqu’à € 1'000)
+
+-          Champ « De la part de »
+
+-          Champ « Pour offrir à »
+
+-          Champ « Ajouter un message »
+
+-          Bouton « Envoyer la demande » (email envoyé à magicmoment@marina-gardens-boutique.com)
+
+ 
+
+Une fois l’estimation faite, un pop-up avec le résumé apparait et la personne peut prendre contact via un formulaire de contact avec les champs suivants :
+
+ 
+
+Nom
+Prénom
+Email
+Téléphone
+Choix Wellness (3 choix dans liste de 8 activités)
+Choix activité Sensory (1 choix dans liste de 2 activités)
+Parcours artistique oui/non
+Message (optionnel)
