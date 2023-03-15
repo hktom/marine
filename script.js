@@ -155,10 +155,10 @@ $(function () {
         "retraite, team building, corporate event, workshop, regroupement d’amis"
       );
       $("#group-field-people").removeClass("d-none");
-      $("#group-field-people").append(inputGroupeSize);
+      $("#group-field-people").html(inputGroupeSize);
     } else {
       $("#group-field-people").addClass("d-none");
-      $("#group-field-people").append('');
+      $("#group-field-people").html("");
       $("#warning").addClass("d-none");
     }
   });
@@ -182,19 +182,10 @@ $(function () {
   $("#gift-checked").change(function () {
     if (this.checked) {
       $("#form-gift").removeClass("d-none");
-      $("#form-gift").append(formGift);
-      //   let gifts_options = "";
-      //   for (let i = 100; i <= 1000; i = i + 100) {
-      //     gifts_options += `<option value="${i}">${i}€</option>`;
-      //   }
-
-      //   $("#gift-value").append(
-      //     `<option value="50">50€</option> ${gifts_options}
-      //       `
-      //   );
+      $("#form-gift").html(formGift);
     } else {
       $("#form-gift").addClass("d-none");
-      $("#form-gift").append('');
+      $("#form-gift").html("");
     }
   });
 
