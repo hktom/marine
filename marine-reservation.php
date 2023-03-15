@@ -3,7 +3,7 @@
  * Plugin Name: Marine Reservation
  * Description: Help you to create a reservation system for your marine activity
  * Plugin URI:  https://github.com/hktom/marine
- * Version:     1.0.1
+ * Version:     2.0.0
  * Author:      Kinshasa Digital
  * Author URI:  https://github.com/DRC-COVID19
  * Text Domain: marine-reservation
