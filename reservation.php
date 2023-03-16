@@ -5,6 +5,9 @@ function reservation()
     return <<< REM
 
     <div class="main-container bg-dark px-2 py-1">
+        <div class="alert alert-success reservation-success d-none" role="alert">
+        Votre demande réservation a bien été prise en compte. Nous vous contacterons dans les plus brefs délais.
+        </div>
         <form id="form-reservation">
             <div class="my-2">
                 <label for="guest" class="text-light">Nombre de personnes</label>

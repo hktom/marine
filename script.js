@@ -188,7 +188,12 @@ $(function () {
     $("#contact-modal-show-total").text(`${total}€`);
     $("#contact-modal-show-date-from").text($("#from").val());
     $("#contact-modal-show-date-to").text($("#to").val());
-    $("#modal-reservation").modal("show");
+
+    // show alert
+    $(".reservation-failed").addClass("d-none");
+    $(".reservation-success").addClass("d-none");
+
+    $("#modal-contact").modal("show");
   });
 
   $("#form-contact").submit(function (e) {
@@ -213,12 +218,20 @@ $(function () {
 
     console.log(data);
 
+    $(".reservation-failed").addClass("d-none");
+    $(".reservation-success").addClass("d-none");
+
     axios
       .post(plugin_dir + "marine/ajax.php", data)
       .then(function (response) {
-        console.log(response);
+        $(".reservation-success").removeClass("d-none");
+        $("#modal-contact").modal("hide");
+        // clear form
+        $("#form-reservation")[0].reset();
+        $("#form-contact")[0].reset();
       })
       .catch(function (error) {
+        $(".reservation-failed").removeClass("d-none");
         console.log(error);
       });
   });

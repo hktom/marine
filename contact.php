@@ -5,7 +5,7 @@ function contact()
   return <<< REM
   <div
         class="modal fade modal-xl"
-        id="modal-reservation"
+        id="modal-contact"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -71,6 +71,10 @@ function contact()
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
+                </div>
+
+                <div class="alert alert-danger reservation-failed d-none" role="alert">
+                Une Erreur est survenue lors de la réservation. Veuillez ressayer
                 </div>
   
                 <div>
