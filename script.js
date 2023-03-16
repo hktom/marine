@@ -105,6 +105,23 @@ $(function () {
     }
   }
 
+  // check fields to display total
+  $("#guest").change(function () {
+    checkFields();
+  });
+
+  $("#from").change(function () {
+    checkFields();
+  });
+
+  $("#to").change(function () {
+    checkFields();
+  });
+
+  $("#promo-field").change(function () {
+    checkFields();
+  });
+
   const promo_code = "TCS2023";
   var dateFormat = "mm/dd/yy",
     from = $("#from")
@@ -164,20 +181,47 @@ $(function () {
   });
 
   // check all fields are filled
-  $("form").submit(function (e) {
+  $("#form-reservation").submit(function (e) {
     e.preventDefault();
     // show bootstrap modal
+    $("#contact-modal-show-person").text($("#guest").val());
+    $("#contact-modal-show-total").text(`${total}€`);
+    $("#contact-modal-show-date-from").text($("#from").val());
+    $("#contact-modal-show-date-to").text($("#to").val());
     $("#modal-reservation").modal("show");
   });
 
-  // check form on focus
-  //   $("#form-reservation").focusout(function () {
-  //     checkFields();
-  //   });
+  $("#form-contact").submit(function (e) {
+    e.preventDefault();
+    let data = {
+      guest: $("#guest").val(),
+      from: $("#from").val(),
+      to: $("#to").val(),
+      promo: $("#promo-field").val(),
+      group_size: $("#group-size").val(),
+      last_name: $("#last_name").val(),
+      first_name: $("#first_name").val(),
+      email: $("#email").val(),
+      mobile: $("#mobile").val(),
+      wellness: $("#wellness").val(),
+      sensory: $("#sensory").val(),
+      hasArtisticPath: $("input[name='hasArtisticPath']").val(),
+      message: $("#message").val(),
+    };
 
-  //   $("#form-reservation").focusin(function () {
-  //     checkFields();
-  //   });
+    let plugin_dir = $("#plugin_dir").val();
+
+    console.log(data);
+
+    axios
+      .post(plugin_dir + "marine/ajax.php", data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
 
   $("#gift-checked").change(function () {
     if (this.checked) {
