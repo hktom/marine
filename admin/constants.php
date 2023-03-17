@@ -1,6 +1,7 @@
 <?php
 
 define("COLUMNS", [
+      "id",
       "first_name", 
       "last_name", 
       "email", 

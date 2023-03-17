@@ -152,7 +152,6 @@ class Marine_reservation_export
   {
     global $wpdb;
     $charset_collate = $wpdb->get_charset_collate();
-
     $table_name = $wpdb->prefix . MARINE_RESERVATION_TABLE;
 
     $sql = "CREATE TABLE " . $table_name . " (
@@ -171,12 +170,11 @@ class Marine_reservation_export
       promo_code VARCHAR(255) NOT NULL,
       total double NOT NULL,
       message TEXT NULL,
-      created_at VARCHAR(255) NOT NULL,
-      PRIMARY KEY  (id),
-        ) $charset_collate;";
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY  (id)) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+    dbDelta($sql) or die('Error creating table ' . $table_name);
   }
 
   // end Class

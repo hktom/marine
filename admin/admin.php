@@ -14,7 +14,7 @@ class Marine_reservation_export_admin
     {
         add_menu_page(
             __('Reservation', 'Marine_reservations'), //page title
-            __('Rservation Export', 'Marine_reservations'), //menu title
+            __('Rservation', 'Marine_reservations'), //menu title
             'manage_options', //capability
             MARINE_RESERVATION_PAGE, //menu slug
             array($this, 'load_page'), //function

@@ -16,8 +16,13 @@ function get_reservations($from, $to)
     global $wpdb;
     $table_name = $wpdb->prefix . MARINE_RESERVATION_TABLE;
 
-    // get result select between date
-    $result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE created_at >=  " . $from . " AND  created_at <= " . $to . " ");
+    $result = [];
+
+    if ($from && $to) {
+        $result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE created_at >=  " . $from . " AND  created_at <= " . $to . " ");
+    } else {
+        $result = $wpdb->get_results("SELECT * FROM " . $table_name . " ORDER BY id ASC");
+    }
 
     $data = array();
 
@@ -48,7 +53,7 @@ function get_reservations($from, $to)
 
 function reformat($date)
 {
-    if (!isset($date)) {
+    if ($date == '') {
         return '';
     }
 
@@ -58,7 +63,8 @@ function reformat($date)
 
 function customInput($name, $type = "text")
 {
-    echo '<input type="' . $type . '" name="date_' . $name . '" id="datepicker-' . $name . '" class="w-100 d-block mt-1" value="' . $_POST['date_' . $name] . '" required />';
+    $date = isset($_POST['date_' . $name]) ? $_POST['date_' . $name] : '';
+    echo '<input type="' . $type . '" name="date_' . $name . '" id="datepicker-' . $name . '" class="w-100 d-block mt-1" value="' . $date . '" required />';
 }
 
 function filterData(&$str)
