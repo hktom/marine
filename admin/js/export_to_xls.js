@@ -23,9 +23,9 @@ jQuery(document).ready(function($) {
         return orderFormatted;
     }
 
-    function exportToXls(data, type) {
+    function exportToXls(data) {
         let options = {
-            fileName: `${new Date().toLocaleDateString("fr-FR")}_${type}_orders`,
+            fileName: `${new Date().toLocaleDateString("fr-FR")}_reservations`,
         };
         let ordersFormatted = formatOrders(data);
         var tableData = [{
@@ -36,11 +36,11 @@ jQuery(document).ready(function($) {
         Jhxlsx.export(tableData, options);
     }
 
-    $("#downloadlink_sage").on("click", function() {
-        exportToXls(orders["sage"], "sage");
+    $("#btn-export").on("click", function() {
+        exportToXls(reservations['reservations']);
     });
 
-    $("#downloadlink_simple").on("click", function() {
-        exportToXls(orders["simple"], "simple");
-    });
+    // $("#downloadlink_simple").on("click", function() {
+    //     exportToXls(orders["simple"], "simple");
+    // });
 });

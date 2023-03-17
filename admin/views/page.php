@@ -32,7 +32,7 @@ console.log(reservations);
 ?>
 
 
-<div style="width:98%;margin:auto" class="mt-1 px-4 py-1">
+<div style="margin:auto" class="mt-1 px-1 py-1 w-100">
   <h1 class="mb-5 mt-5">Marine reservation</h1>
 
   <div class="container-fluid mt-4">
@@ -56,57 +56,7 @@ console.log(reservations);
     </form>
   </div>
 
-  <!-- table reservations -->
-  <div class="mt-5 mx-3">
-    <table class="table table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Prénom</th>
-          <th scope="col">Email</th>
-          <th scope="col">Mobile</th>
-          <th scope="col">Choix Wellness</th>
-          <th scope="col">Choix activité Sensory</th>
-          <th scope="col">Avez-vous un Parcours artistique</th>
-          <th scope="col">Nombre de personnes</th>
-          <th scope="col">Nombre de personnes dans le groupe</th>
-          <th scope="col">Date d'arrivée</th>
-          <th scope="col">Date de départ</th>
-          <th scope="col">Code promo</th>
-          <th scope="col">Total</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        foreach ($reservations['reservations'] as $key => $reservation) : ?>
-          <tr>
-            <th scope="row"><?php echo $reservation['id']; ?></th>
-            <td><?php echo $reservation['last_name']; ?></td>
-            <td><?php echo $reservation['first_name']; ?></td>
-            <td><?php echo $reservation['email']; ?></td>
-            <td><?php echo $reservation['mobile']; ?></td>
-            <td><?php echo $reservation['wellness_choice']; ?></td>
-            <td><?php echo $reservation['activity_sensory_choice']; ?></td>
-            <td><?php echo $reservation['artistique_path_choice']; ?></td>
-            <td><?php echo $reservation['guest']; ?></td>
-            <td><?php echo $reservation['custom_number_guest']; ?></td>
-            <td><?php echo $reservation['date_from']; ?></td>
-            <td><?php echo $reservation['date_to']; ?></td>
-            <td><?php echo $reservation['promo_code']; ?></td>
-            <td><?php echo $reservation['total']; ?></td>
-            <td><?php echo $reservation['created_at']; ?></td>
-          </tr>
-        
-        <?php endforeach; ?>
-
-      </tbody>
-    </table>
-  </div>
-  <!-- table reservations -->
-
-  <div class="container-fluid bg-light mt-5 py-5 px-5">
+  <div class="container-fluid bg-light mt-4 py-2 px-5">
     <div class="row my-4">
       <h2 class="mb-4"> <?php echo isset($reservations['total']) ? $reservations["total"] : 0; ?> reservations trouvées </h2>
 
@@ -124,5 +74,57 @@ console.log(reservations);
     </div>
 
   </div>
+
+  <!-- table reservations -->
+  <div class="container-fluid">
+    <div class="mt-5 row flex-row flex-nowrap">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">CWellness</th>
+            <th scope="col">Sensory</th>
+            <th scope="col">Parcours artistique</th>
+            <th scope="col">Nbre de personnes</th>
+            <th scope="col">Nbre de personnes groupe</th>
+            <th scope="col">Arrivée</th>
+            <th scope="col">Départ</th>
+            <th scope="col">Promo</th>
+            <th scope="col">Total</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($reservations['reservations'] as $key => $reservation) : ?>
+            <tr>
+              <th scope="row"><?php echo $reservation['id']; ?></th>
+              <td><?php echo $reservation['last_name']; ?></td>
+              <td><?php echo $reservation['first_name']; ?></td>
+              <td><?php echo $reservation['email']; ?></td>
+              <td><?php echo $reservation['mobile']; ?></td>
+              <td><?php echo $reservation['wellness_choice']; ?></td>
+              <td><?php echo $reservation['activity_sensory_choice']; ?></td>
+              <td><?php echo $reservation['artistique_path_choice']; ?></td>
+              <td><?php echo $reservation['guest']; ?></td>
+              <td><?php echo $reservation['custom_number_guest']; ?></td>
+              <td><?php echo $reservation['date_from']; ?></td>
+              <td><?php echo $reservation['date_to']; ?></td>
+              <td><?php echo $reservation['promo_code']; ?></td>
+              <td><?php echo $reservation['total']; ?></td>
+              <td><?php echo $reservation['created_at']; ?></td>
+            </tr>
+
+          <?php endforeach; ?>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- table reservations -->
 
 </div>
