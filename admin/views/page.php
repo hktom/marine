@@ -80,25 +80,26 @@ console.log(reservations);
       </thead>
       <tbody>
         <?php
-        print_r($reservations); ?>
-        <tr>
-          <th scope="row">-</th>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-          <td> - </td>
-        </tr>
-
+        foreach ($reservations['reservations'] as $key => $reservation) : ?>
+          <tr>
+            <th scope="row"><?php echo $reservation['id']; ?></th>
+            <td><?php echo $reservation['last_name']; ?></td>
+            <td><?php echo $reservation['first_name']; ?></td>
+            <td><?php echo $reservation['email']; ?></td>
+            <td><?php echo $reservation['mobile']; ?></td>
+            <td><?php echo $reservation['wellness_choice']; ?></td>
+            <td><?php echo $reservation['activity_sensory_choice']; ?></td>
+            <td><?php echo $reservation['artistique_path_choice']; ?></td>
+            <td><?php echo $reservation['guest']; ?></td>
+            <td><?php echo $reservation['custom_number_guest']; ?></td>
+            <td><?php echo $reservation['date_from']; ?></td>
+            <td><?php echo $reservation['date_to']; ?></td>
+            <td><?php echo $reservation['promo_code']; ?></td>
+            <td><?php echo $reservation['total']; ?></td>
+            <td><?php echo $reservation['created_at']; ?></td>
+          </tr>
+        
+        <?php endforeach; ?>
 
       </tbody>
     </table>

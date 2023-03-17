@@ -9,6 +9,14 @@ $message = "Nouvele reservation";
 
 $headers = array('Content-Type: text/html; charset=UTF-8');
 
-wp_mail($data['email'], "Nouvelle reservation", $message, $headers) or throw new Exception("Error sending email");
+try {
+    wp_mail($data['email'], "Nouvelle reservation", $message, $headers);
+} catch (\Throwable $th) {
+    throw new Exception("Error sending email");
+}
 
-addReservation($data) or throw new Exception("Error adding reservation");
+try {
+    addReservation($data);
+} catch (\Throwable $th) {
+    throw new Exception("Error adding reservation");
+}

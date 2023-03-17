@@ -26,23 +26,23 @@ function get_reservations($from, $to)
 
     $data = array();
 
-    foreach ($result as $post) {
-        $data['id'] = $post->id;
-        $data['first_name'] = $post->first_name;
-        $data['last_name'] = $post->last_name;
-        $data['email'] = $post->email;
-        $data['mobile'] = $post->mobile;
-        $data['wellness_choice'] = $post->wellness_choice;
-        $data['activity_sensory_choice'] = $post->activity_sensory_choice;
-        $data['artistique_path_choice'] = $post->artistique_path_choice;
-        $data['guest'] = $post->guest;
-        $data['custom_number_guest'] = $post->custom_number_guest;
-        $data['date_from'] = $post->date_from;
-        $data['date_to'] = $post->date_to;
-        $data['promo_code'] = $post->promo_code;
-        $data['total'] = $post->total;
-        $data['message'] = $post->message;
-        $data['created_at'] = $post->created_at;
+    foreach ($result as $key => $value) {
+        
+        $data[$key]['id'] = $value->id;
+        $data[$key]['first_name'] = $value->first_name;
+        $data[$key]['last_name'] = $value->last_name;
+        $data[$key]['email'] = $value->email;
+        $data[$key]['mobile'] = $value->mobile;
+        $data[$key]['wellness_choice'] = $value->wellness_choice;
+        $data[$key]['activity_sensory_choice'] = $value->activity_sensory_choice;
+        $data[$key]['artistique_path_choice'] = $value->artistique_path_choice;
+        $data[$key]['guest'] = $value->guest;
+        $data[$key]['custom_number_guest'] = $value->custom_number_guest;
+        $data[$key]['date_from'] = $value->date_from;
+        $data[$key]['date_to'] = $value->date_to;
+        $data[$key]['total'] = $value->total;
+        $data[$key]['promo_code'] = $value->promo_code;
+        $data[$key]['created_at'] = $value->created_at;
     }
 
     return array(
@@ -99,7 +99,7 @@ function addReservation($data)
             'promo_code' => $data['promo'],
             'total' => $data['total'],
             'message' => $data['message'],
-            'created_at' => $data['created_at'],
+            // 'created_at' => $data['created_at'],
         )
     );
 }
