@@ -1,7 +1,5 @@
 <?php
 
-
-
 function get_orders($from, $to)
 {
     $orders = wc_get_orders(array(
@@ -63,27 +61,27 @@ function get_items($items)
     return $items_array;
 }
 
-function set_total($order, $orderItems, $value)
-{
-    $total =  "";
-    if ($value == "Sous-total TTC") {
-        $total = $orderItems['subtotal'];
-    }
+// function set_total($order, $orderItems, $value)
+// {
+//     $total =  "";
+//     if ($value == "Sous-total TTC") {
+//         $total = $orderItems['subtotal'];
+//     }
 
-    if ($value == "Sous-total HTC") {
-        $total = $orderItems['subtotal'] - $orderItems['subtotal_tax'];
-    }
+//     if ($value == "Sous-total HTC") {
+//         $total = $orderItems['subtotal'] - $orderItems['subtotal_tax'];
+//     }
 
-    if ($value == "TVA") {
-        $total = $orderItems['subtotal_tax'];
-    }
+//     if ($value == "TVA") {
+//         $total = $orderItems['subtotal_tax'];
+//     }
 
-    if ($total != "") {
-        return number_format((float) $total, 2);
-    }
+//     if ($total != "") {
+//         return number_format((float) $total, 2);
+//     }
 
-    return "";
-}
+//     return "";
+// }
 
 function set_array($order, $orderItems, $value)
 {
@@ -126,38 +124,38 @@ function set_array($order, $orderItems, $value)
     );
 }
 
-function format_orders_simple($orders)
-{
-    $_orders_export = [];
-    for ($i = 0; $i < sizeof($orders); $i++) {
-        $orderItems = get_items($orders[$i]->get_items());
-        for ($j = 0; $j < sizeof($orderItems); $j++) {
-            $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], SIMPLE_EXPORT);
-        }
-    }
+// function format_orders_simple($orders)
+// {
+//     $_orders_export = [];
+//     for ($i = 0; $i < sizeof($orders); $i++) {
+//         $orderItems = get_items($orders[$i]->get_items());
+//         for ($j = 0; $j < sizeof($orderItems); $j++) {
+//             $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], SIMPLE_EXPORT);
+//         }
+//     }
 
-    return $_orders_export;
-}
+//     return $_orders_export;
+// }
 
-function format_orders_sage($orders)
-{
-    $_orders_export = [];
-    for ($i = 0; $i < sizeof($orders); $i++) {
-        $orderItems = get_items($orders[$i]->get_items());
-        for ($j = 0; $j < sizeof($orderItems); $j++) {
-            if ($orders[$i]->data['total_tax'] == 0) {
-                $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], NO_TAX_L1);
+// function format_orders_sage($orders)
+// {
+//     $_orders_export = [];
+//     for ($i = 0; $i < sizeof($orders); $i++) {
+//         $orderItems = get_items($orders[$i]->get_items());
+//         for ($j = 0; $j < sizeof($orderItems); $j++) {
+//             if ($orders[$i]->data['total_tax'] == 0) {
+//                 $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], NO_TAX_L1);
 
-                $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], NO_TAX_L2);
-            }
+//                 $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], NO_TAX_L2);
+//             }
 
-            if ($orders[$i]->data['total_tax'] != 0) {
-                $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L1);
-                $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L2);
-                $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L3);
-            }
-        }
-    }
+//             if ($orders[$i]->data['total_tax'] != 0) {
+//                 $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L1);
+//                 $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L2);
+//                 $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], TAX_L3);
+//             }
+//         }
+//     }
 
-    return $_orders_export;
-}
+//     return $_orders_export;
+// }

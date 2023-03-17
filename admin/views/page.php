@@ -33,13 +33,13 @@ console.log(orders);
 
 
 <div style="width:98%" class="mt-4">
-    <h1 class="mb-5 mt-5">Silikin Village Sage Export</h1>
+    <h1 class="mb-5 mt-5">MARINE RESERVATION EXPORT</h1>
 
 <div class="container-fluid mt-4">
     <form class="row" method="POST" action="?page=<?php echo $pageName; ?>">
 
     <div class="col-12">
-    <h6 class="mb-5 mt-5"><i>Choisissez la periode d'exportation</i></h6>
+    <h6 class="mb-5 mt-5"><i>Choisissez la période d'exportation</i></h6>
     </div>
       <div class="col-md-3 col-12">
       Date début
@@ -58,17 +58,17 @@ console.log(orders);
 
 <div class="container-fluid bg-light mt-5 py-5 px-5">
  <div class="row my-4">
-  <h2 class="mb-4"> <?php echo $orders['total']; ?> commandes trouvées </h2>
+  <h2 class="mb-4"> <?php echo $orders['total']; ?> reservations trouvées </h2>
 
   <?php if ($orders["total"] > 0): ?>
 
   <div class="col-md-2 col-6">
-    <a class="btn btn-info w-100" id='downloadlink_sage'>Export Sage</a>
+    <a class="btn btn-info w-100" id='btn-export'>Export</a>
   </div>
 
-  <div class="col-md-2 col-6">
+  <!-- <div class="col-md-2 col-6">
     <a class="btn btn-warning w-100" id='downloadlink_simple'>Export Simple</a>
-  </div>
+  </div> -->
    <?php endif;?>
 
   </div>
