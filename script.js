@@ -224,6 +224,7 @@ $(function () {
     axios
       .post(plugin_dir + "marine/ajax.php", data)
       .then(function (response) {
+        $("#total").addClass("d-none");
         $(".reservation-success").removeClass("d-none");
         $("#modal-contact").modal("hide");
         // clear form
