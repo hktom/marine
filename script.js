@@ -212,6 +212,7 @@ $(function () {
       sensory: $("#sensory").val(),
       hasArtisticPath: $("input[name='hasArtisticPath']").val(),
       message: $("#message").val(),
+      total: total,
     };
 
     let plugin_dir = $("#plugin_dir").val();

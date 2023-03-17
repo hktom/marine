@@ -138,14 +138,24 @@ function contact()
   
                     <div class="my-2">
                       <label>Choix Wellness</label>
-                      <select class="form-select" id="wellness"></select>
+                      <select class="form-select" id="wellness">
+                        <option selected>Choisir</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
                     </div>
                     <!-- wellness -->
   
                     <!-- activity sensory -->
                     <div class="my-2">
                       <label>Choix activité Sensory</label>
-                      <select class="form-select" id="sensory"></select>
+                      <select class="form-select" id="sensory">
+                      <option selected>Choisir</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
                     </div>
                     <!-- activity sensory -->
   
