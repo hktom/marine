@@ -9,13 +9,23 @@
  * Text Domain: marine-reservation
  */
 
-// namespace Marine_Reservation;
+// if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+defined('ABSPATH') or die('You silly human !');
+define('SKVSE_PAGE', "skv-sage-export");
+
+define('SKVSE_URL', plugins_url('', __FILE__));
+define('SKVSE_DIR', plugin_dir_path(__FILE__));
+define('SKVSE_VER', '1.0.0');
+
+if (!defined('SKVSE_FILE')) {
+    define('SKVSE_FILE', __FILE__);
+    define('SKVSE_BASENAME', plugin_basename(SKVSE_FILE));
+}
 
 include plugin_dir_path( __FILE__ ) . '/reservation.php';
 include plugin_dir_path( __FILE__ ) . '/contact.php';
-
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+require_once SKVSE_DIR . 'admin/admin.php';
 
 function marine_reservation(){
     $plugin_dir = plugin_dir_url( __DIR__ );
@@ -92,3 +102,62 @@ function marine_reservation(){
 // add_action( 'phpmailer_init', 'mailer_config', 10, 1);
 
 add_shortcode('reservation', 'marine_reservation');
+
+class Skv_sage_export
+{
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        // silence is golden
+    }
+
+    public function register()
+    {
+        $skv_sage_export_admin = new Skv_sage_export_admin();
+        $skv_sage_export_admin->init();
+        add_action('admin_init', array($this, 'load_admin_js_css'));
+    }
+
+    public function activate()
+    {
+    }
+
+    public function deactivate()
+    {
+    }
+
+    public function initializeWooCommerceHooks()
+    {
+    }
+
+    public function load_admin_js_css()
+    {
+        wp_enqueue_style("jquery-wp-css", SKVSE_URL . "/assets/css/jquery-ui.min.css");
+
+        wp_enqueue_style("bootstrap-css", SKVSE_URL . "/assets/css/bootstrap.css");
+
+        wp_enqueue_script("jquery");
+        wp_enqueue_script("jquery-ui-accordion");
+        wp_enqueue_script("jquery-ui-datepicker");
+    }
+
+    public function load_front_js_script_css()
+    {
+    }
+
+    // end Class
+}
+
+// function skv_uninstall()
+// {}
+
+if (class_exists('Skv_sage_export')) {
+    $skv_sage_export = new Skv_sage_export();
+    $skv_sage_export->register();
+
+    register_activation_hook(__FILE__, array($skv_sage_export, 'activate'));
+    register_deactivation_hook(__FILE__, array($skv_sage_export, 'deactivate'));
+    // add_action('plugins_loaded', array($Skv_sage_export, '_register'));
+}
