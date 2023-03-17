@@ -9,7 +9,8 @@ function get_reservations($from, $to)
     $result = [];
 
     if ($from && $to) {
-        $result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE created_at >=  " . $from . " AND  created_at <= " . $to . " ");
+        $result = $wpdb->get_results("SELECT * FROM logs WHERE created_at STR_TO_DATE(date, '%m/%d/%Y') between STR_TO_DATE('".$from."', '%m/%d/%Y') and STR_TO_DATE('".$to."', '%m/%d/%Y')");
+        // $result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE created_at >=  " . $from . " AND  created_at <= " . $to . " ");
     } else {
         $result = $wpdb->get_results("SELECT * FROM " . $table_name . " ORDER BY id ASC");
     }

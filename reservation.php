@@ -26,6 +26,24 @@ function reservation()
     
             <div id="group-field-people" class="d-none">
                 <!-- input people number -->
+                <label for="group-size" class="text-light"
+                    >Nombre de personnes dans le groupe</label
+                    >
+                    <input
+                    class="form-control"
+                    type="number"
+                    id="group-size"
+                    name="group-size"
+                    min="1"
+                    />
+                    <small
+                    ><i
+                        ><label for="guest" class="text-light my-2">
+                        Une offre définitive vous sera communiquée après vérification
+                        des disponibilités pour votre groupe
+                        </label></i
+                    ></small
+                    >
             </div>
     
             <div class="my-2">

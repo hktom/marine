@@ -8,25 +8,25 @@ $(function () {
 
   let total = 0;
 
-  const inputGroupeSize = `<label for="group-size" class="text-light"
-  >Nombre de personnes dans le groupe</label
->
-<input
-  class="form-control"
-  type="number"
-  id="group-size"
-  name="group-size"
-  min="1"
-  required
-/>
-<small
-  ><i
-    ><label for="guest" class="text-light my-2">
-      Une offre définitive vous sera communiquée après vérification
-      des disponibilités pour votre groupe
-    </label></i
-  ></small
->`;
+//   const inputGroupeSize = `<label for="group-size" class="text-light"
+//   >Nombre de personnes dans le groupe</label
+// >
+// <input
+//   class="form-control"
+//   type="number"
+//   id="group-size"
+//   name="group-size"
+//   min="1"
+//   required
+// />
+// <small
+//   ><i
+//     ><label for="guest" class="text-light my-2">
+//       Une offre définitive vous sera communiquée après vérification
+//       des disponibilités pour votre groupe
+//     </label></i
+//   ></small
+// >`;
 
   let formGift = `<div class="my-2">
   <label class="text-light">Valeur du bon</label>
@@ -85,7 +85,8 @@ $(function () {
     } else if (selected_guest === guest[2]) {
       _total = promo === promo_code ? 1575 : 1750;
     } else if (selected_guest === guest[3]) {
-      _total = 875;
+      _total = 875 * $("#group-size").val();
+      
     }
     return _total;
   }
@@ -95,6 +96,8 @@ $(function () {
     let from = $("#from").val();
     let to = $("#to").val();
     let promo = $("#promo-field").val();
+    // let groupSize = $("#group-size").val();
+    
 
     if (guest != "" && from != "" && to != "") {
       $("#total").removeClass("d-none");
@@ -172,12 +175,21 @@ $(function () {
         "retraite, team building, corporate event, workshop, regroupement d’amis"
       );
       $("#group-field-people").removeClass("d-none");
-      $("#group-field-people").html(inputGroupeSize);
+      $("#group-size").attr("required",);
+      // $("#group-field-people").append(inputGroupeSize);
     } else {
       $("#group-field-people").addClass("d-none");
-      $("#group-field-people").html("");
+      $("#group-size").removeAttr("required");
+      // $("#group-field-people").html("");
       $("#warning").addClass("d-none");
     }
+  });
+
+  $("#group-size").change(function () {
+    checkFields();
+    // console.log($("#group-size").val());
+    // total = 875 * $("#group-size").val();
+    // $("#total").text(`Total: ${total}€`);
   });
 
   // check all fields are filled
