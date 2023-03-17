@@ -48,12 +48,12 @@ function reservation()
     
             <div class="my-2">
                 <label for="from" class="text-light">Date d'arrivée</label>
-                <input class="form-control" type="text" id="from" name="date-arrivee" required />
+                <input class="form-control" type="text" id="from" name="date-arrivee" required  autocomplete="off" />
             </div>
     
             <div class="my-2">
                 <label for="to" class="text-light">Date de départ</label>
-                <input class="form-control" type="text" id="to" name="date-depart" required />
+                <input class="form-control" type="text" id="to" name="date-depart" required  autocomplete="off" />
             </div>
     
             <div class="my-2">

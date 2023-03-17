@@ -84,7 +84,7 @@ function addReservation($data)
             'activity_sensory_choice' => $data['sensory'],
             'artistique_path_choice' => $data['hasArtisticPath'],
             'guest' => $data['guest'],
-            // 'custom_number_guest' => $data['custom_number_guest'],
+            'custom_number_guest' => $data['group_size'],
             'date_from' => $data['from'],
             'date_to' => $data['to'],
             'promo_code' => $data['promo'],

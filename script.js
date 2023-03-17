@@ -133,17 +133,24 @@ $(function () {
         changeMonth: true,
         numberOfMonths: 1,
         minDate: 0,
+        dateFormat: "d MM yy",
+        regional: "fr",
         //maxDate: "+1M +10D",
       })
       .on("change", function () {
         to.datepicker("option", "minDate", getDate(this));
-      }),
+      });
+
+      // $("#from").datepicker($.datepicker.regional[ "fr" ]);
+      
     to = $("#to")
       .datepicker({
         defaultDate: "+1w",
         changeMonth: true,
         numberOfMonths: 1,
         minDate: 1,
+        dateFormat: "d MM yy",
+        regional: "fr",
       })
       .on("change", function () {
         from.datepicker("option", "maxDate", getDate(this));
@@ -187,9 +194,6 @@ $(function () {
 
   $("#group-size").change(function () {
     checkFields();
-    // console.log($("#group-size").val());
-    // total = 875 * $("#group-size").val();
-    // $("#total").text(`Total: ${total}€`);
   });
 
   // check all fields are filled
