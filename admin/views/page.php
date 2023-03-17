@@ -1,11 +1,11 @@
 <?php
 defined('ABSPATH') or die('You silly human !');
 
-require_once SKVSE_DIR . 'admin/constants.php';
-require_once SKVSE_DIR . 'admin/function.php';
+require_once MARINE_RESERVATION_DIR . 'admin/constants.php';
+require_once MARINE_RESERVATION_DIR . 'admin/function.php';
 
-$pageName = SKVSE_PAGE;
-$exportPage = SKVSE_URL . '/admin/views/export.php';
+$pageName = MARINE_RESERVATION_PAGE;
+$exportPage = MARINE_RESERVATION_URL . '/admin/views/export.php';
 
 $from = reformat($_POST['date_from']);
 $to = reformat($_POST['date_to']);
@@ -24,11 +24,11 @@ var orders=' . json_encode($orders) . ';
 console.log(orders);
 </script>
 
-<script src="' . SKVSE_URL . '/admin/js/lib/FileSaver.js"></script>
-<script src="' . SKVSE_URL . '/admin/js/lib/jhxlsx.js"></script>
+<script src="' . MARINE_RESERVATION_URL . '/admin/js/lib/FileSaver.js"></script>
+<script src="' . MARINE_RESERVATION_URL . '/admin/js/lib/jhxlsx.js"></script>
 
-<script src="' . SKVSE_URL . '/admin/js/export_to_xls.js"></script>
-<script src="' . SKVSE_URL . '/admin/js/main.js"></script>';
+<script src="' . MARINE_RESERVATION_URL . '/admin/js/export_to_xls.js"></script>
+<script src="' . MARINE_RESERVATION_URL . '/admin/js/main.js"></script>';
 ?>
 
 

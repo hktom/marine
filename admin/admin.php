@@ -2,7 +2,7 @@
 
 defined('ABSPATH') or die('You silly human !');
 
-class Skv_sage_export_admin
+class Marine_reservation_export_admin
 {
 
     public function init()
@@ -13,10 +13,10 @@ class Skv_sage_export_admin
     public function init_admin_menu()
     {
         add_menu_page(
-            __('Silikin Village Sage Export', 'skvse'), //page title
-            __('Silikin Export', 'skvse'), //menu title
+            __('Silikin Village Sage Export', 'Marine_reservationse'), //page title
+            __('Silikin Export', 'Marine_reservationse'), //menu title
             'manage_options', //capability
-            SKVSE_PAGE, //menu slug
+            MARINE_RESERVATION_PAGE, //menu slug
             array($this, 'load_page'), //function
             'dashicons-podio', //icon
             14
@@ -26,7 +26,7 @@ class Skv_sage_export_admin
 
     public function load_page()
     {
-        require_once SKVSE_DIR . 'admin/views/page.php';
+        require_once MARINE_RESERVATION_DIR . 'admin/views/page.php';
     }
 
     // class end
