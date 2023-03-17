@@ -21,23 +21,23 @@ function get_reservations($from, $to)
 
     $data = array();
 
-    foreach ($result as $post){
-    $data['id'] = $post->id;
-    $data['first_name'] = $post->first_name;
-    $data['last_name'] = $post->last_name;
-    $data['email'] = $post->email;
-    $data['mobile'] = $post->mobile;
-    $data['wellness_choice'] = $post->wellness_choice;
-    $data['activity_sensory_choice'] = $post->activity_sensory_choice;
-    $data['artistique_path_choice'] = $post->artistique_path_choice;
-    $data['guest'] = $post->guest;
-    $data['custom_number_guest'] = $post->custom_number_guest;
-    $data['date_from'] = $post->date_from;
-    $data['date_to'] = $post->date_to;
-    $data['promo_code'] = $post->promo_code;
-    $data['total'] = $post->total;
-    $data['message'] = $post->message;
-    $data['created_at'] = $post->created_at;
+    foreach ($result as $post) {
+        $data['id'] = $post->id;
+        $data['first_name'] = $post->first_name;
+        $data['last_name'] = $post->last_name;
+        $data['email'] = $post->email;
+        $data['mobile'] = $post->mobile;
+        $data['wellness_choice'] = $post->wellness_choice;
+        $data['activity_sensory_choice'] = $post->activity_sensory_choice;
+        $data['artistique_path_choice'] = $post->artistique_path_choice;
+        $data['guest'] = $post->guest;
+        $data['custom_number_guest'] = $post->custom_number_guest;
+        $data['date_from'] = $post->date_from;
+        $data['date_to'] = $post->date_to;
+        $data['promo_code'] = $post->promo_code;
+        $data['total'] = $post->total;
+        $data['message'] = $post->message;
+        $data['created_at'] = $post->created_at;
     }
 
     return array(
@@ -68,6 +68,34 @@ function filterData(&$str)
     if (strstr($str, '"')) {
         $str = '"' . str_replace('"', '""', $str) . '"';
     }
+}
+
+function addReservation($data)
+{
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . MARINE_RESERVATION_TABLE;
+
+    $wpdb->insert(
+        $table_name,
+        array(
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'mobile' => $data['mobile'],
+            'wellness_choice' => $data['wellness'],
+            'activity_sensory_choice' => $data['sensory'],
+            'artistique_path_choice' => $data['hasArtisticPath'],
+            'guest' => $data['guest'],
+            // 'custom_number_guest' => $data['custom_number_guest'],
+            'date_from' => $data['from'],
+            'date_to' => $data['to'],
+            'promo_code' => $data['promo'],
+            'total' => $data['total'],
+            'message' => $data['message'],
+            'created_at' => $data['created_at'],
+        )
+    );
 }
 
 // function get_items($items)
