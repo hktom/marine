@@ -1,18 +1,48 @@
 <?php
 
-function get_orders($from, $to)
+function get_reservations($from, $to)
 {
-    $orders = wc_get_orders(array(
-        'type' => 'shop_order',
-        'status' => array('wc-completed'),
-        'date_after' => $from,
-        'date_before' => $to,
-    ));
-    return array(
-        'sage' => format_orders_sage($orders),
-        'simple' => format_orders_simple($orders),
-        'total' => sizeof($orders),
+    // $orders = wc_get_orders(array(
+    //     'type' => 'shop_order',
+    //     'status' => array('wc-completed'),
+    //     'date_after' => $from,
+    //     'date_before' => $to,
+    // ));
+    // return array(
+    //     'sage' => format_orders_sage($orders),
+    //     'simple' => format_orders_simple($orders),
+    //     'total' => sizeof($orders),
+    // );
+    global $wpdb;
+    $table_name = $wpdb->prefix . MARINE_RESERVATION_TABLE;
 
+    // get result select between date
+    $result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE created_at >=  " . $from . " AND  created_at <= " . $to . " ");
+
+    $data = array();
+
+    foreach ($result as $post){
+    $data['id'] = $post->id;
+    $data['first_name'] = $post->first_name;
+    $data['last_name'] = $post->last_name;
+    $data['email'] = $post->email;
+    $data['mobile'] = $post->mobile;
+    $data['wellness_choice'] = $post->wellness_choice;
+    $data['activity_sensory_choice'] = $post->activity_sensory_choice;
+    $data['artistique_path_choice'] = $post->artistique_path_choice;
+    $data['guest'] = $post->guest;
+    $data['custom_number_guest'] = $post->custom_number_guest;
+    $data['date_from'] = $post->date_from;
+    $data['date_to'] = $post->date_to;
+    $data['promo_code'] = $post->promo_code;
+    $data['total'] = $post->total;
+    $data['message'] = $post->message;
+    $data['created_at'] = $post->created_at;
+    }
+
+    return array(
+        'reservations' => $data,
+        'total' => sizeof($data),
     );
 }
 
@@ -40,26 +70,26 @@ function filterData(&$str)
     }
 }
 
-function get_items($items)
-{
-    $items_array = [];
-    foreach ($items as $key => $value) {
-        $_items = [];
-        $_items['order_id'] = $value->get_order_id();
-        $_items['name'] = $value->get_name();
-        $_items['product_id'] = $value->get_product_id();
-        $_items['subtotal_tax'] = $value->get_subtotal_tax();
-        $_items['subtotal'] = $value->get_subtotal();
-        $_items['total_tax'] = $value->get_total_tax();
-        $_items['total'] = $value->get_total();
-        $_items['code_compte'] = get_post_meta($value->get_product_id(), "code_compte", true);
-        $_items['code_de_suivi'] = get_post_meta($value->get_product_id(), "code_de_suivi", true);
+// function get_items($items)
+// {
+//     $items_array = [];
+//     foreach ($items as $key => $value) {
+//         $_items = [];
+//         $_items['order_id'] = $value->get_order_id();
+//         $_items['name'] = $value->get_name();
+//         $_items['product_id'] = $value->get_product_id();
+//         $_items['subtotal_tax'] = $value->get_subtotal_tax();
+//         $_items['subtotal'] = $value->get_subtotal();
+//         $_items['total_tax'] = $value->get_total_tax();
+//         $_items['total'] = $value->get_total();
+//         $_items['code_compte'] = get_post_meta($value->get_product_id(), "code_compte", true);
+//         $_items['code_de_suivi'] = get_post_meta($value->get_product_id(), "code_de_suivi", true);
 
-        $items_array[] = $_items;
-    }
+//         $items_array[] = $_items;
+//     }
 
-    return $items_array;
-}
+//     return $items_array;
+// }
 
 // function set_total($order, $orderItems, $value)
 // {
@@ -83,58 +113,58 @@ function get_items($items)
 //     return "";
 // }
 
-function set_array($order, $orderItems, $value)
-{
-    $months = array(
-        0 => "janvier",
-        1 => "février",
-        2 => "mars",
-        3 => "avril",
-        4 => "mai",
-        5 => "juin",
-        6 => "juillet",
-        7 => "août",
-        8 => "septembre",
-        9 => "octobre",
-        10 => "novembre",
-        11 => "décembre"
-    );
-
-    $month = intval($order['date_created']->date('n'));
-    if (empty($order['billing']['company'])) {
-        $invoiceOwnerLine = 'Facture ' . $order['billing']['first_name'] . ' du mois ' . $months[$month - 1];
-    } else {
-        $invoiceOwnerLine = 'Facture ' . $order['billing']['company'] . ' du mois ' . $months[$month - 1];
-    }
-    return array(
-        COLUMNS[0] => "COTEX",
-        COLUMNS[1] => "JVT",
-        COLUMNS[2] => $order['date_created']->date('d/m/Y'),
-        COLUMNS[3] => $value[COLUMNS[3]] == 'standard' ? $orderItems['code_compte'] : $value[COLUMNS[3]],
-        COLUMNS[4] => $orderItems['order_id'],
-        COLUMNS[5] => $invoiceOwnerLine,
-        COLUMNS[6] => $value[COLUMNS[6]],
-        COLUMNS[7] => $value[COLUMNS[7]] != "" ? set_total($order, $orderItems, $value[COLUMNS[7]]) : "",
-        COLUMNS[8] => $order['usd'],
-        COLUMNS[9] => "USD",
-        COLUMNS[10] => $value[COLUMNS[10]],
-        COLUMNS[11] => $value[COLUMNS[11]] != "standard" ? $value[COLUMNS[11]] : "CTX-" . $orderItems['code_de_suivi'],
-        COLUMNS[12] => $value[COLUMNS[12]],
-
-    );
-}
-
-// function format_orders_simple($orders)
+// function set_array($order, $orderItems, $value)
 // {
-//     $_orders_export = [];
-//     for ($i = 0; $i < sizeof($orders); $i++) {
+//     $months = array(
+//         0 => "janvier",
+//         1 => "février",
+//         2 => "mars",
+//         3 => "avril",
+//         4 => "mai",
+//         5 => "juin",
+//         6 => "juillet",
+//         7 => "août",
+//         8 => "septembre",
+//         9 => "octobre",
+//         10 => "novembre",
+//         11 => "décembre"
+//     );
+
+//     $month = intval($order['date_created']->date('n'));
+//     if (empty($order['billing']['company'])) {
+//         $invoiceOwnerLine = 'Facture ' . $order['billing']['first_name'] . ' du mois ' . $months[$month - 1];
+//     } else {
+//         $invoiceOwnerLine = 'Facture ' . $order['billing']['company'] . ' du mois ' . $months[$month - 1];
+//     }
+//     return array(
+//         COLUMNS[0] => "COTEX",
+//         COLUMNS[1] => "JVT",
+//         COLUMNS[2] => $order['date_created']->date('d/m/Y'),
+//         COLUMNS[3] => $value[COLUMNS[3]] == 'standard' ? $orderItems['code_compte'] : $value[COLUMNS[3]],
+//         COLUMNS[4] => $orderItems['order_id'],
+//         COLUMNS[5] => $invoiceOwnerLine,
+//         COLUMNS[6] => $value[COLUMNS[6]],
+//         COLUMNS[7] => $value[COLUMNS[7]] != "" ? set_total($order, $orderItems, $value[COLUMNS[7]]) : "",
+//         COLUMNS[8] => $order['usd'],
+//         COLUMNS[9] => "USD",
+//         COLUMNS[10] => $value[COLUMNS[10]],
+//         COLUMNS[11] => $value[COLUMNS[11]] != "standard" ? $value[COLUMNS[11]] : "CTX-" . $orderItems['code_de_suivi'],
+//         COLUMNS[12] => $value[COLUMNS[12]],
+
+//     );
+// }
+
+// function format_reservations($reservations)
+// {
+//     $_reservations_export = [];
+//     for ($i = 0; $i < sizeof($reservations); $i++) {
 //         $orderItems = get_items($orders[$i]->get_items());
 //         for ($j = 0; $j < sizeof($orderItems); $j++) {
-//             $_orders_export[] = set_array($orders[$i]->data, $orderItems[$j], SIMPLE_EXPORT);
+//             $_reservations_export[] = set_array($orders[$i]->data, $orderItems[$j], SIMPLE_EXPORT);
 //         }
 //     }
 
-//     return $_orders_export;
+//     return $_reservations_export;
 // }
 
 // function format_orders_sage($orders)

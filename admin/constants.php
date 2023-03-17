@@ -1,6 +1,22 @@
 <?php
 
-define("COLUMNS", ["first_name", "last_name", "email", "mobile", "wellness_choice", "activity_sensory_choice", "artistique_path_choice", "guest", "custom_number_guest", "date_from", "date_to", "promo_code", "total", "message", "created_at"]);
+define("COLUMNS", [
+      "first_name", 
+      "last_name", 
+      "email", 
+      "mobile", 
+      "wellness_choice", 
+      "activity_sensory_choice", 
+      "artistique_path_choice", 
+      "guest", 
+      "custom_number_guest", 
+      "date_from", 
+      "date_to", 
+      "promo_code", 
+      "total", 
+      "message", 
+      "created_at"
+]);
 
 /*
 id int(11) NOT NULL AUTO_INCREMENT,
