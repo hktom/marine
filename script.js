@@ -209,7 +209,13 @@ $(function () {
     $(".reservation-failed").addClass("d-none");
     $(".reservation-success").addClass("d-none");
 
-    $("#modal-contact").modal("show");
+    // $("#modal-contact").modal("show");
+    // style display block
+    $("#modal-contact").css("display", "block");
+  });
+
+  $("#btn-close").click(function () {
+    $("#modal-contact").css("display", "none");
   });
 
   $("#form-contact").submit(function (e) {
@@ -243,7 +249,8 @@ $(function () {
       .then(function (response) {
         $("#total").addClass("d-none");
         $(".reservation-success").removeClass("d-none");
-        $("#modal-contact").modal("hide");
+        // $("#modal-contact").modal("hide");
+        $("#modal-contact").css("display", "none");
         // clear form
         $("#form-reservation")[0].reset();
         $("#form-contact")[0].reset();

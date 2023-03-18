@@ -3,14 +3,8 @@
 function contact()
 {
   return <<< REM
-  <div
-        class="modal fade modal-xl"
-        id="modal-contact"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
+  <div id="modal-contact">
+        <div class="">
           <div class="modal-content">
             <div class="w-100 d-flex justify-content-start align-items-start">
               <!-- left -->
@@ -68,8 +62,7 @@ function contact()
                   <button
                     type="button"
                     class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+                    id="btn-close"
                   ></button>
                 </div>
 
