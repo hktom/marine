@@ -148,7 +148,7 @@ $(function () {
         defaultDate: "+1w",
         changeMonth: true,
         numberOfMonths: 1,
-        minDate: 1,
+        minDate: 0,
         dateFormat: "d MM yy",
         regional: "fr",
       })

@@ -132,10 +132,17 @@ function contact()
                     <div class="my-2">
                       <label>Choix Wellness</label>
                       <select class="form-select" id="wellness">
-                        <option selected>Choisir</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        <option value="CICLISMO">CICLISMO</option>
+                        <option value="PADEL">PADEL</option>
+                        <option value="TREKKING">TREKKING</option>
+                        <option value="EQUITAZIONE">EQUITAZIONE</option>
+                        <option value="YOGA">YOGA</option>
+                        <option value="GOLF">GOLF</option>
+                        <option value="SKI">SKI</option>
+                        <option value="Canoa e kayak
+                        ">Canoa e kayak
+                        </option>
+                        
                       </select>
                     </div>
                     <!-- wellness -->
@@ -144,10 +151,8 @@ function contact()
                     <div class="my-2">
                       <label>Choix activité Sensory</label>
                       <select class="form-select" id="sensory">
-                      <option selected>Choisir</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        <option value="DEGUSTAZIONE DI VINO">DEGUSTAZIONE DI VINO</option>
+                        <option value="CACCIA AL TARTUFO">CACCIA AL TARTUFO</option>
                       </select>
                     </div>
                     <!-- activity sensory -->
