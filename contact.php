@@ -2,7 +2,7 @@
 
 function contact()
 {
-  return <<<REM
+  return <<< REM
   <div
         class="modal fade modal-xl"
         id="modal-reservation"
@@ -202,5 +202,5 @@ function contact()
           </div>
         </div>
       </div>
-  REM;
+REM;
 }

@@ -9,7 +9,7 @@
  * Text Domain: marine-reservation
  */
 
-namespace Marine_Reservation;
+// namespace Marine_Reservation;
 
 include plugin_dir_path( __FILE__ ) . '/reservation.php';
 include plugin_dir_path( __FILE__ ) . '/contact.php';
