@@ -5,6 +5,9 @@ function reservation()
     return <<< REM
 
     <div class="main-container bg-dark px-2 py-1">
+        <div class="alert alert-success reservation-success d-none" role="alert">
+        Votre demande réservation a bien été prise en compte. Nous vous contacterons dans les plus brefs délais.
+        </div>
         <form id="form-reservation">
             <div class="my-2">
                 <label for="guest" class="text-light">Nombre de personnes</label>
@@ -23,16 +26,34 @@ function reservation()
     
             <div id="group-field-people" class="d-none">
                 <!-- input people number -->
+                <label for="group-size" class="text-light"
+                    >Nombre de personnes dans le groupe</label
+                    >
+                    <input
+                    class="form-control"
+                    type="number"
+                    id="group-size"
+                    name="group-size"
+                    min="1"
+                    />
+                    <small
+                    ><i
+                        ><label for="guest" class="text-light my-2">
+                        Une offre définitive vous sera communiquée après vérification
+                        des disponibilités pour votre groupe
+                        </label></i
+                    ></small
+                    >
             </div>
     
             <div class="my-2">
                 <label for="from" class="text-light">Date d'arrivée</label>
-                <input class="form-control" type="text" id="from" name="date-arrivee" required />
+                <input class="form-control" type="text" id="from" name="date-arrivee" required  autocomplete="off" />
             </div>
     
             <div class="my-2">
                 <label for="to" class="text-light">Date de départ</label>
-                <input class="form-control" type="text" id="to" name="date-depart" required />
+                <input class="form-control" type="text" id="to" name="date-depart" required  autocomplete="off" />
             </div>
     
             <div class="my-2">

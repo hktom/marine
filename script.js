@@ -8,25 +8,25 @@ $(function () {
 
   let total = 0;
 
-  const inputGroupeSize = `<label for="group-size" class="text-light"
-  >Nombre de personnes dans le groupe</label
->
-<input
-  class="form-control"
-  type="number"
-  id="group-size"
-  name="group-size"
-  min="1"
-  required
-/>
-<small
-  ><i
-    ><label for="guest" class="text-light my-2">
-      Une offre définitive vous sera communiquée après vérification
-      des disponibilités pour votre groupe
-    </label></i
-  ></small
->`;
+//   const inputGroupeSize = `<label for="group-size" class="text-light"
+//   >Nombre de personnes dans le groupe</label
+// >
+// <input
+//   class="form-control"
+//   type="number"
+//   id="group-size"
+//   name="group-size"
+//   min="1"
+//   required
+// />
+// <small
+//   ><i
+//     ><label for="guest" class="text-light my-2">
+//       Une offre définitive vous sera communiquée après vérification
+//       des disponibilités pour votre groupe
+//     </label></i
+//   ></small
+// >`;
 
   let formGift = `<div class="my-2">
   <label class="text-light">Valeur du bon</label>
@@ -85,7 +85,8 @@ $(function () {
     } else if (selected_guest === guest[2]) {
       _total = promo === promo_code ? 1575 : 1750;
     } else if (selected_guest === guest[3]) {
-      _total = 875;
+      _total = 875 * $("#group-size").val();
+      
     }
     return _total;
   }
@@ -95,6 +96,8 @@ $(function () {
     let from = $("#from").val();
     let to = $("#to").val();
     let promo = $("#promo-field").val();
+    // let groupSize = $("#group-size").val();
+    
 
     if (guest != "" && from != "" && to != "") {
       $("#total").removeClass("d-none");
@@ -105,6 +108,23 @@ $(function () {
     }
   }
 
+  // check fields to display total
+  $("#guest").change(function () {
+    checkFields();
+  });
+
+  $("#from").change(function () {
+    checkFields();
+  });
+
+  $("#to").change(function () {
+    checkFields();
+  });
+
+  $("#promo-field").change(function () {
+    checkFields();
+  });
+
   const promo_code = "TCS2023";
   var dateFormat = "mm/dd/yy",
     from = $("#from")
@@ -113,17 +133,24 @@ $(function () {
         changeMonth: true,
         numberOfMonths: 1,
         minDate: 0,
+        dateFormat: "d MM yy",
+        regional: "fr",
         //maxDate: "+1M +10D",
       })
       .on("change", function () {
         to.datepicker("option", "minDate", getDate(this));
-      }),
+      });
+
+      // $("#from").datepicker($.datepicker.regional[ "fr" ]);
+      
     to = $("#to")
       .datepicker({
         defaultDate: "+1w",
         changeMonth: true,
         numberOfMonths: 1,
-        minDate: 1,
+        minDate: 0,
+        dateFormat: "d MM yy",
+        regional: "fr",
       })
       .on("change", function () {
         from.datepicker("option", "maxDate", getDate(this));
@@ -155,29 +182,84 @@ $(function () {
         "retraite, team building, corporate event, workshop, regroupement d’amis"
       );
       $("#group-field-people").removeClass("d-none");
-      $("#group-field-people").html(inputGroupeSize);
+      $("#group-size").attr("required",);
+      // $("#group-field-people").append(inputGroupeSize);
     } else {
       $("#group-field-people").addClass("d-none");
-      $("#group-field-people").html("");
+      $("#group-size").removeAttr("required");
+      // $("#group-field-people").html("");
       $("#warning").addClass("d-none");
     }
   });
 
-  // check all fields are filled
-  $("form").submit(function (e) {
-    e.preventDefault();
-    // show bootstrap modal
-    $("#modal-reservation").modal("show");
+  $("#group-size").change(function () {
+    checkFields();
   });
 
-  // check form on focus
-  //   $("#form-reservation").focusout(function () {
-  //     checkFields();
-  //   });
+  // check all fields are filled
+  $("#form-reservation").submit(function (e) {
+    e.preventDefault();
+    // show bootstrap modal
+    $("#contact-modal-show-person").text($("#guest").val());
+    $("#contact-modal-show-total").text(`${total}€`);
+    $("#contact-modal-show-date-from").text($("#from").val());
+    $("#contact-modal-show-date-to").text($("#to").val());
 
-  //   $("#form-reservation").focusin(function () {
-  //     checkFields();
-  //   });
+    // show alert
+    $(".reservation-failed").addClass("d-none");
+    $(".reservation-success").addClass("d-none");
+
+    // $("#modal-contact").modal("show");
+    // style display block
+    $("#modal-contact").css("display", "block");
+  });
+
+  $("#btn-close").click(function () {
+    $("#modal-contact").css("display", "none");
+  });
+
+  $("#form-contact").submit(function (e) {
+    e.preventDefault();
+    let data = {
+      guest: $("#guest").val(),
+      from: $("#from").val(),
+      to: $("#to").val(),
+      promo: $("#promo-field").val(),
+      group_size: $("#group-size").val(),
+      last_name: $("#last_name").val(),
+      first_name: $("#first_name").val(),
+      email: $("#email").val(),
+      mobile: $("#mobile").val(),
+      wellness: $("#wellness").val(),
+      sensory: $("#sensory").val(),
+      hasArtisticPath: $("input[name='hasArtisticPath']").val(),
+      message: $("#message").val(),
+      total: total,
+    };
+
+    let plugin_dir = $("#plugin_dir").val();
+
+    console.log(data);
+
+    $(".reservation-failed").addClass("d-none");
+    $(".reservation-success").addClass("d-none");
+
+    axios
+      .post(plugin_dir + "marine/ajax.php", data)
+      .then(function (response) {
+        $("#total").addClass("d-none");
+        $(".reservation-success").removeClass("d-none");
+        // $("#modal-contact").modal("hide");
+        $("#modal-contact").css("display", "none");
+        // clear form
+        $("#form-reservation")[0].reset();
+        $("#form-contact")[0].reset();
+      })
+      .catch(function (error) {
+        $(".reservation-failed").removeClass("d-none");
+        console.log(error);
+      });
+  });
 
   $("#gift-checked").change(function () {
     if (this.checked) {

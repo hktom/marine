@@ -3,6 +3,7 @@
 function contact()
 {
   return <<< REM
+<<<<<<< HEAD
   <div
         class="modal fade modal-xl"
         id="modal-reservation"
@@ -11,6 +12,10 @@ function contact()
         aria-hidden="true"
       >
         <div class="modal-dialog">
+=======
+  <div id="modal-contact">
+        <div class="">
+>>>>>>> 900f957f537a1c17c8c81c0fb4f6e527c9e89b91
           <div class="modal-content">
             <div class="w-100 d-flex justify-content-start align-items-start">
               <!-- left -->
@@ -21,9 +26,7 @@ function contact()
                 <!-- people -->
                 <div class="d-flex align-items-center justify-content-start">
                   <span class="material-symbols-outlined"> person </span>
-                  <h1 class="modal-title fs-5 mx-3" id="exampleModalLabel">
-                    1 personne seule
-                  </h1>
+                  <h1 class="modal-title fs-5 mx-3" id="contact-modal-show-person"></h1>
                 </div>
                 <!-- people -->
   
@@ -32,14 +35,19 @@ function contact()
                   <span class="material-symbols-outlined"> calendar_month </span>
                   <h1
                     class="modal-title fs-5 mx-3 d-flex align-items-center justify-content-start"
-                    id="exampleModalLabel"
-                  >
-                    15 mars 2022
+                    id="contact-modal-show-date-from"
+                  > </h1>
+                    
                     <span class="material-symbols-outlined">
                       arrow_right_alt
                     </span>
-                    20 mars 2022
+                    <h1
+                    class="modal-title fs-5 mx-3 d-flex align-items-center justify-content-start"
+                    id="contact-modal-show-date-to"
+                  >
+                    
                   </h1>
+
                 </div>
                 <!-- calendar -->
   
@@ -49,8 +57,7 @@ function contact()
                   style="margin-top: 5rem"
                 >
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Total</h1>
-                  <h1 class="modal-title fs-2 mx-3" id="exampleModalLabel">
-                    800€
+                  <h1 class="modal-title fs-2 mx-3" id="contact-modal-show-total">
                   </h1>
                 </div>
                 <!-- total -->
@@ -66,13 +73,16 @@ function contact()
                   <button
                     type="button"
                     class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+                    id="btn-close"
                   ></button>
+                </div>
+
+                <div class="alert alert-danger reservation-failed d-none" role="alert">
+                Une Erreur est survenue lors de la réservation. Veuillez ressayer
                 </div>
   
                 <div>
-                  <form class="d-block w-100">
+                  <form class="d-block w-100" id="form-contact">
                     <!-- name -->
                     <div class="mb-3 row w-100">
                       <label class="col-sm-2 col-form-label">Nom</label>
@@ -80,7 +90,8 @@ function contact()
                         <input
                           type="text"
                           class="form-control w-100"
-                          id="lastname"
+                          id="last_name"
+                          required
                         />
                       </div>
                     </div>
@@ -93,7 +104,8 @@ function contact()
                         <input
                           type="text"
                           class="form-control w-100"
-                          id="firstname"
+                          id="first_name"
+                          required
                         />
                       </div>
                     </div>
@@ -107,6 +119,7 @@ function contact()
                           type="email"
                           class="form-control w-100"
                           id="email"
+                          required
                         />
                       </div>
                     </div>
@@ -117,7 +130,7 @@ function contact()
                       <label class="col-sm-2 col-form-label">Mobile</label>
                       <div class="col-sm-10">
                         <input
-                          type="email"
+                          type="text"
                           class="form-control w-100"
                           id="mobile"
                         />
@@ -129,14 +142,29 @@ function contact()
   
                     <div class="my-2">
                       <label>Choix Wellness</label>
-                      <select class="form-select" id="wellness" required></select>
+                      <select class="form-select" id="wellness">
+                        <option value="CICLISMO">CICLISMO</option>
+                        <option value="PADEL">PADEL</option>
+                        <option value="TREKKING">TREKKING</option>
+                        <option value="EQUITAZIONE">EQUITAZIONE</option>
+                        <option value="YOGA">YOGA</option>
+                        <option value="GOLF">GOLF</option>
+                        <option value="SKI">SKI</option>
+                        <option value="Canoa e kayak
+                        ">Canoa e kayak
+                        </option>
+                        
+                      </select>
                     </div>
                     <!-- wellness -->
   
                     <!-- activity sensory -->
                     <div class="my-2">
                       <label>Choix activité Sensory</label>
-                      <select class="form-select" id="sensory" required></select>
+                      <select class="form-select" id="sensory">
+                        <option value="DEGUSTAZIONE DI VINO">DEGUSTAZIONE DI VINO</option>
+                        <option value="CACCIA AL TARTUFO">CACCIA AL TARTUFO</option>
+                      </select>
                     </div>
                     <!-- activity sensory -->
   
@@ -149,7 +177,7 @@ function contact()
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault"
+                          name="hasArtisticPath"
                           id="flexRadioDefault1"
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -160,7 +188,7 @@ function contact()
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault"
+                          name="hasArtisticPath"
                           id="flexRadioDefault2"
                           checked
                         />
@@ -186,7 +214,6 @@ function contact()
                     <button
                       type="submit"
                       class="btn btn-success mt-3 mb-3"
-                      disabled
                     >
                       Envoyer
                       <div class="spinner-border text-dark d-none" role="status">
